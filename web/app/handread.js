@@ -78,7 +78,14 @@ function describeMade(hole, board) {
     const pairedRank = holeRanks.find((rank) => boardCounts.has(rank));
 
     if (pairedRank === undefined) {
-      return `pár na stole ${rankName(uniqueBoard[0])}`;
+      // Párovaná hodnota na stole — ne nejvyšší karta. Na boardu 4♠ 4♦ T♣
+      // je to pár 4, i když T je vyšší.
+      const boardPair = [...boardCounts.entries()]
+        .filter(([, count]) => count >= 2)
+        .map(([rank]) => rank)
+        .sort((first, second) => second - first)[0];
+
+      return `pár na stole ${rankName(boardPair ?? uniqueBoard[0])}`;
     }
     if ((boardCounts.get(pairedRank) ?? 0) >= 2) {
       return `trojice ${rankName(pairedRank)}`;

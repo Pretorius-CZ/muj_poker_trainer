@@ -33,6 +33,12 @@ test("pár na stole, když se nic netrefilo", () => {
   assert.equal(read("Ah Kd", "9c 9d 2s").made, "pár na stole 9");
 });
 
+test("pár na stole ukáže párovanou hodnotu, ne nejvyšší kartu", () => {
+  assert.equal(read("Ah Kd", "4c 4d Tc").made, "pár na stole 4");
+  assert.equal(read("Ah Kd", "4c 4d 9s").made, "pár na stole 4");
+  assert.equal(read("Ah Kd", "4c 4d 9s Jd").made, "pár na stole 4");
+});
+
 test("flush draw, včetně do esa", () => {
   assert.equal(read("9s 2s", "Ks 7s 3d").draws[0], "flush draw");
   assert.equal(read("As 2s", "Ks 7s 3d").draws[0], "flush draw (do esa)");
