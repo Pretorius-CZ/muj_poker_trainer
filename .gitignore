@@ -1,0 +1,10 @@
+# Závislosti
+node_modules/
+
+# Dočasné soubory a screenshoty
+.tmp-edge/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db

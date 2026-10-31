@@ -1,0 +1,11 @@
+{
+  "name": "@poker/engine",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Pokerový engine pro trenažér: karty, hand evaluator, betting state machine, side poty.",
+  "scripts": {
+    "test": "node --test --test-isolation=none \"test/**/*.test.ts\"",
+    "sim": "node src/sim.ts 100000"
+  }
+}

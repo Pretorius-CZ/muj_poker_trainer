@@ -1,0 +1,6 @@
+{
+  "name": "@poker/web",
+  "private": true,
+  "type": "module",
+  "description": "UI stolu — čisté HTML/CSS/JS, bez frameworku."
+}
