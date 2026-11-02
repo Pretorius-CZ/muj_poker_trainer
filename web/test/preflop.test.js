@@ -53,6 +53,9 @@ test("handLabel popíše handu správně", () => {
   assert.equal(handLabel(parseCards("As Ah")), "AA");
   assert.equal(handLabel(parseCards("As Ks")), "AKs");
   assert.equal(handLabel(parseCards("As Kh")), "AKo");
+  assert.equal(handLabel(parseCards("Ts Th")), "10 10");
+  assert.equal(handLabel(parseCards("Ts 9s")), "10 9s");
+  assert.equal(handLabel(parseCards("As Th")), "A10o");
 });
 
 test("dealHand vrátí dvě různé karty", () => {

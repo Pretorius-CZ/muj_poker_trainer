@@ -169,6 +169,19 @@ export function gradePreflop(spot, cards) {
   };
 }
 
+/**
+ * Popisek třídy handy. Mezi "10" a druhou hodnotou dává mezeru, aby se
+ * "109s" nečetlo jako sto devět.
+ */
+function classLabel(high, low, type) {
+  const hi = rankChar(high);
+  const lo = rankChar(low);
+  const separator = hi === "10" ? " " : "";
+
+  if (type === "pair") return `${hi}${separator}${lo}`;
+  return `${hi}${separator}${lo}${type === "suited" ? "s" : "o"}`;
+}
+
 export function handLabel(cards) {
   const first = cards[0];
   const second = cards[1];
@@ -177,9 +190,10 @@ export function handLabel(cards) {
   const high = Math.max(rankA, rankB);
   const low = Math.min(rankA, rankB);
 
-  if (high === low) return `${rankChar(high)}${rankChar(low)}`;
+  if (high === low) return classLabel(high, low, "pair");
+
   const suited = (first & 3) === (second & 3);
-  return `${rankChar(high)}${rankChar(low)}${suited ? "s" : "o"}`;
+  return classLabel(high, low, suited ? "suited" : "offsuit");
 }
 
 /** 169 buněk 13×13 tabulky pro daný spot. */
@@ -194,10 +208,7 @@ export function chartCells(spot) {
       const percentile = classPercentile(high, low, type);
 
       cells.push({
-        label:
-          type === "pair"
-            ? `${rankChar(high)}${rankChar(low)}`
-            : `${rankChar(high)}${rankChar(low)}${type === "suited" ? "s" : "o"}`,
+        label: classLabel(high, low, type),
         action: actionFor(spot, percentile),
         percentile,
       });
