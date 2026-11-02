@@ -995,6 +995,50 @@ body {
   border-bottom: 1px solid rgba(255, 255, 255, 0.04);
 }
 
+.improve {
+  margin: 8px 0 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border-left: 3px solid var(--red);
+  background: rgba(224, 122, 118, 0.06);
+}
+
+.improve h4 {
+  margin: 0 0 6px;
+  font-size: 10px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: #b98a86;
+}
+
+.improve ul {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin: 0;
+  padding-left: 16px;
+  font-size: 12.5px;
+}
+
+.improve li {
+  color: #d7c3c1;
+}
+
+.improve .imp-street {
+  margin-right: 6px;
+  font-size: 9.5px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.improve em {
+  margin-left: 6px;
+  font-style: normal;
+  font-weight: 700;
+  color: var(--red);
+}
+
 .review-row:last-of-type {
   border-bottom: none;
 }

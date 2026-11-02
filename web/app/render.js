@@ -597,6 +597,40 @@ function reviewHtml(review, bigBlind) {
 
   const icons = { good: "✓", mistake: "✗", tip: "!", info: "•" };
 
+  const actionLabels = {
+    call: "dorovnání",
+    check: "check",
+    bet: "sázka",
+    raise: "zvýšení",
+    fold: "zahození",
+  };
+
+  const improvements = review.items
+    .filter((item) => item.verdict === "mistake" && item.evLoss > 0)
+    .sort((first, second) => second.evLoss - first.evLoss)
+    .slice(0, 3);
+
+  const improveHtml =
+    improvements.length > 0
+      ? `<div class="improve">
+          <h4>Co šlo udělat líp</h4>
+          <ul>
+            ${improvements
+              .map((item) => {
+                const correct = item.note.includes("→ správně:")
+                  ? item.note.split("→ správně:")[1].trim()
+                  : null;
+                const label = actionLabels[item.action] ?? item.action;
+
+                return `<li><span class="imp-street">${STREET_SHORT[item.street] ?? item.street}</span>${label}${
+                  correct ? ` → ${correct}` : ""
+                }<em>${formatLoss(item.evLoss, bigBlind)}</em></li>`;
+              })
+              .join("")}
+          </ul>
+        </div>`
+      : `<p class="review-note">Podle modelu žádné ztrátové rozhodnutí — není co opravovat.</p>`;
+
   const rows = review.items
     .map((item) => {
       const odds =
@@ -633,6 +667,7 @@ function reviewHtml(review, bigBlind) {
   return `
     <div class="review">
       <h3>Tvoje rozhodnutí</h3>
+      ${improveHtml}
       <div class="review-legend">
         <span>kolo</span><span>akce</span><span>šance</span><span>potřebné</span>
       </div>
@@ -934,29 +969,14 @@ function preflopAdvisorHtml(pre) {
     )
     .join("");
 
-  const nearRaise = Math.abs(pre.percentile - spot.raise) < 0.07;
-  const nearCall = spot.call && Math.abs(pre.percentile - spot.call) < 0.07;
-
   return `
     <div class="advisor-preflop">
       ${head}
       <p class="advisor-spot">${spot.label}</p>
-      <div class="advisor-hand">${pre.cards.map((card) => cardHtml(card)).join("")}</div>
       <div class="advisor-action ${pre.action}">
         <span>Chart</span>
         <strong>${labels[pre.action]}</strong>
       </div>
-      <p class="advisor-note">
-        Tvoje handa je v ${percentText(pre.percentile)}. Hranice pro
-        ${spot.kind === "rfi" ? "zvýšení" : "3-bet"} je ${percentText(spot.raise)}${
-          spot.call ? `, pro dorovnání ${percentText(spot.call)}` : ""
-        }.
-      </p>
-      ${
-        nearRaise || nearCall
-          ? `<p class="advisor-warn">Hraniční handa — tady se baseline charty liší.</p>`
-          : ""
-      }
       <details class="preflop-chart">
         <summary>Tabulka</summary>
         <div class="chart-grid">${cells}</div>
@@ -997,8 +1017,6 @@ function advisorHtml(game, state) {
   const advice = advise(game);
   if (!advice) return "";
 
-  const reasons = advice.reasons.map((reason) => `<li>${reason}</li>`).join("");
-
   return `
     <aside class="advisor">
       <div class="advisor-head">
@@ -1015,8 +1033,6 @@ function advisorHtml(game, state) {
         <div><dt>Šance</dt><dd>${Math.round(advice.equity * 100)} %</dd></div>
         <div><dt>Potřebné</dt><dd>${advice.required > 0 ? `${Math.round(advice.required * 100)} %` : "—"}</dd></div>
       </dl>
-
-      <ul class="advisor-reasons">${reasons}</ul>
 
       <p class="advisor-note">
         Počítá z odhadu rozsahu a fold equity. Není to GTO solver.
