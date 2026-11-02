@@ -13,7 +13,7 @@ import { readHolding } from "./handread.js";
 import { advise } from "./advisor.js";
 import { SPOTS, chartCells, percentText, preflopAdvice } from "./preflop.js";
 
-const RANKS = "23456789TJQKA";
+const RANKS = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];
 const SUITS = ["♣", "♦", "♥", "♠"];
 
 const STREET_LABELS = {

@@ -58,5 +58,7 @@ export const FULL_DECK: readonly Card[] = Object.freeze(
 );
 
 export function rankName(rank: number): string {
+  // Desítku zobrazujeme jako "10" — "T" je pro začátečníka matoucí.
+  if (rank === 10) return "10";
   return RANK_CHARS[rank - 2] ?? "?";
 }

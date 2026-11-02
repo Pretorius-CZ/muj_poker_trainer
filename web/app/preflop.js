@@ -128,6 +128,8 @@ const RFI_BY_POSITION = {
 const percentileCache = new Map();
 
 function rankChar(rank) {
+  // Desítku zobrazujeme jako "10" — "T" je pro začátečníka matoucí.
+  if (rank === 10) return "10";
   return RANK_CHARS[14 - rank];
 }
 
