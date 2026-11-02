@@ -3,6 +3,7 @@ node_modules/
 
 # Dočasné soubory a screenshoty
 .tmp-edge/
+.tmp-mobile/
 *.log
 
 # OS

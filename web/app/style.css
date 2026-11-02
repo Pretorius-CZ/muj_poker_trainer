@@ -1890,21 +1890,427 @@ body {
 
 /* ── responsivita ────────────────────────────────────────────────────── */
 
-@media (max-width: 760px) {
-  .app {
-    padding: 10px 10px 28px;
+/* Tablety a menší notebooky: stůl se roztáhne, sedadla zmenší. */
+@media (max-width: 1100px) {
+  .table {
+    min-width: 0;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10;
+    border-radius: 24px;
   }
 
-  .table {
-    height: 560px;
+  .table-wrap {
+    overflow: visible;
+  }
+
+  .seat {
+    width: 118px;
+    min-height: 88px;
+    padding: 6px 8px 8px;
+    gap: 3px;
+  }
+
+  .seat.is-hero {
+    width: 138px;
+  }
+
+  .seat-head {
+    font-size: 10.5px;
+  }
+
+  .seat-name {
+    font-size: 10px;
+  }
+
+  .seat .card.small {
+    width: 28px;
+    height: 39px;
+  }
+
+  .seat .card.small .rank {
+    font-size: 13px;
+  }
+
+  .seat .card.small .suit {
+    font-size: 11px;
+  }
+
+  .board-cards .card {
+    width: 42px;
+    height: 58px;
+  }
+
+  .board-cards .card .rank {
+    font-size: 20px;
+  }
+
+  .board-cards .card .suit {
+    font-size: 16px;
+  }
+
+  .pot strong {
+    font-size: 17px;
+  }
+}
+
+/* Mobily a tablet na výšku. */
+@media (max-width: 760px) {
+  .app {
+    padding: 8px 8px 24px;
+  }
+
+  .topbar {
+    gap: 8px;
+  }
+
+  .brand {
+    font-size: 14px;
   }
 
   .meta {
-    gap: 10px;
+    gap: 8px;
+    font-size: 11px;
+    flex-wrap: wrap;
+  }
+
+  .session {
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .table {
+    aspect-ratio: 1 / 1;
+    border-radius: 18px;
+  }
+
+  .seat {
+    width: 72px;
+    min-height: 62px;
+    padding: 4px 5px 5px;
+    gap: 2px;
+    border-radius: 9px;
+    overflow: hidden;
+  }
+
+  .seat.is-hero {
+    width: 92px;
+  }
+
+  .seat-head {
+    font-size: 9px;
+    gap: 3px;
+    flex-wrap: wrap;
+  }
+
+  .seat-name {
+    font-size: 8.5px;
+  }
+
+  .dealer {
+    width: 13px;
+    height: 13px;
+    font-size: 8px;
+  }
+
+  .seat-foot {
+    display: none;
+  }
+
+  .seat .card.small {
+    width: 22px;
+    height: 30px;
+    border-radius: 4px;
+  }
+
+  .seat .card.small .rank {
+    font-size: 11px;
+  }
+
+  .seat .card.small .suit {
+    font-size: 9px;
+  }
+
+  .board-cards {
+    gap: 4px;
+  }
+
+  .board-cards .card {
+    width: 32px;
+    height: 44px;
+    border-radius: 5px;
+  }
+
+  .board-cards .card .rank {
+    font-size: 16px;
+  }
+
+  .board-cards .card .suit {
+    font-size: 13px;
+  }
+
+  .board-area {
+    gap: 8px;
+  }
+
+  .pot {
+    gap: 5px;
+    padding: 4px 10px;
+  }
+
+  .pot-label {
+    font-size: 8px;
+  }
+
+  .pot strong {
+    font-size: 14px;
+  }
+
+  .pot em {
+    font-size: 10px;
+  }
+
+  .street {
+    font-size: 9px;
+  }
+
+  .position-now {
+    display: none;
+  }
+
+  .pos-chip {
+    padding: 2px 6px;
+    font-size: 9.5px;
+  }
+
+  .settings-controls {
+    gap: 6px;
+  }
+
+  .settings {
+    gap: 6px;
+  }
+
+  .seg {
+    padding: 7px 9px;
     font-size: 11.5px;
+  }
+
+  .speed-label {
+    display: none;
+  }
+
+  .action-bar {
+    margin-top: 8px;
+    padding: 10px;
+    gap: 8px;
+  }
+
+  .action-head {
+    gap: 6px;
+  }
+
+  .turn {
+    font-size: 11.5px;
+  }
+
+  .btn {
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+
+  .btn-row {
+    gap: 6px;
+  }
+
+  .btn-row .btn {
+    flex: 1 1 calc(50% - 6px);
+  }
+
+  .raise {
+    max-width: none;
+    width: 100%;
+  }
+
+  .holding {
+    gap: 6px;
+    padding: 6px 8px;
+  }
+
+  .holding strong {
+    font-size: 12px;
+  }
+
+  .coach {
+    padding: 10px;
+  }
+
+  .coach p {
+    font-size: 12px;
+  }
+
+  .modal {
+    padding: 8px;
+    align-items: flex-start;
+  }
+
+  .modal-card {
+    width: 100%;
+    max-width: 100%;
+    max-height: calc(100vh - 16px);
+    max-height: calc(100dvh - 16px);
+    overflow-y: auto;
+    border-radius: 14px;
   }
 
   .stat-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .review-row {
+    grid-template-columns: 44px 1fr auto;
+    grid-template-areas:
+      "street action loss"
+      "eq odds odds"
+      "verdict verdict verdict";
+    gap: 3px 8px;
+    padding: 8px 6px;
+  }
+
+  .rv-street {
+    grid-area: street;
+  }
+
+  .rv-action {
+    grid-area: action;
+  }
+
+  .rv-eq {
+    grid-area: eq;
+  }
+
+  .rv-odds {
+    grid-area: odds;
+  }
+
+  .rv-verdict {
+    grid-area: verdict;
+  }
+
+  .rv-loss {
+    grid-area: loss;
+    text-align: right;
+  }
+
+  .hand-row summary {
+    grid-template-columns: 36px 1fr auto;
+    gap: 6px;
+    padding: 6px 8px;
+    font-size: 11px;
+  }
+
+  .h-no,
+  .h-badges {
+    display: none;
+  }
+
+  .advisor {
+    padding: 12px;
+  }
+
+  .chart-cell {
+    font-size: 7px;
+  }
+
+  .advisor-preflop .chart-cell {
+    font-size: 5.5px;
+  }
+
+  select,
+  input[type="number"] {
+    font-size: 16px;
+  }
+}
+
+/* Malé telefony. */
+@media (max-width: 380px) {
+  .seat {
+    width: 64px;
+    min-height: 56px;
+    padding: 3px 4px 4px;
+  }
+
+  .seat.is-hero {
+    width: 84px;
+  }
+
+  .seat-head {
+    font-size: 8px;
+  }
+
+  .seat-name {
+    font-size: 7.5px;
+  }
+
+  .seat .card.small {
+    width: 20px;
+    height: 27px;
+  }
+
+  .board-cards .card {
+    width: 30px;
+    height: 42px;
+  }
+
+  .board-cards .card .rank {
+    font-size: 14px;
+  }
+
+  .board-cards .card .suit {
+    font-size: 11px;
+  }
+
+  .pot strong {
+    font-size: 12.5px;
+  }
+}
+
+/* Ještě menší telefony: aby se krajní sedadla nelepila na board. */
+@media (max-width: 360px) {
+  .seat {
+    width: 58px;
+  }
+
+  .seat.is-hero {
+    width: 76px;
+  }
+
+  .seat .card.small {
+    width: 18px;
+    height: 25px;
+  }
+
+  .board-cards {
+    gap: 2px;
+  }
+
+  .board-cards .card {
+    width: 28px;
+    height: 38px;
+  }
+}
+
+/* Dotyková zařízení: větší cíle. */
+@media (pointer: coarse) {
+  .btn {
+    min-height: 44px;
+  }
+
+  .seg {
+    min-height: 40px;
+  }
+
+  .pos-chip {
+    padding: 4px 8px;
   }
 }
