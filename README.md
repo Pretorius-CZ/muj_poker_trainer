@@ -195,8 +195,9 @@ zavření zase pustí, takže si je můžeš v klidu pročíst i uprostřed hand
 ### Boční solver
 
 Přepínač **Solver** otevře panel na boku. Když jsi na řadě, ukáže
-doporučenou akci (zahodit / dorovnat / vsadit / zvýšit), šanci, potřebnou
-cenu a důvody — včetně čtení handy a typu soupeře.
+doporučenou akci (zahodit / dorovnat / vsadit / zvýšit) a k tomu šanci
+a potřebnou cenu. Karty ani slovní zdůvodnění v panelu nejsou — od toho je
+čtečka a review po handě.
 
 Počítá z odhadu rozsahu, fold equity a exploit heuristik, takže to **není
 GTO solver** a je to tak i označené. Když nejsi na řadě, panel jen čeká.
@@ -206,6 +207,9 @@ GTO solver** a je to tak i označené. Když nejsi na řadě, panel jen čeká.
 Po každé handě se v výsledkové kartě objeví sekce **Tvoje rozhodnutí**:
 u každé akce uvidíš street, co jsi udělal, s jakou equity, jaké byly pot
 odds a jestli to podle matematiky bylo dobře, nebo ne — včetně ztráty v bb.
+
+Nahoře je krátký souhrn **Co šlo udělat líp** — tři nejdražší rozhodnutí
+jednou řádkou, bez dlouhého výpisu.
 
 ```
 preflop call   eq 16 %  pot odds 29 %  ✗ call bez pot odds     −1,4 bb
