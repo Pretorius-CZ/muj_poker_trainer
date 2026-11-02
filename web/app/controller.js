@@ -8,8 +8,8 @@
 
 import { Table } from "../engine/table.js";
 import { createRng } from "../engine/rng.js";
-import { createArchetypePolicy, rangeTierFor } from "../engine/archetypes.js";
-import { topPercentRange } from "../engine/strength.js";
+import { createArchetypePolicy } from "../engine/archetypes.js";
+import { narrowRange } from "./rangenarrow.js";
 import { DEFAULT_PRESET, getPreset, presetProfiles } from "../engine/presets.js";
 
 export const DEFAULT_SEATS = 9;
@@ -141,7 +141,7 @@ export class GameController {
     for (const other of this.hand.seats) {
       if (other.seat === this.humanSeat) continue;
       if (other.folded || other.hole.length === 0) continue;
-      ranges.push(topPercentRange(rangeTierFor(this.hand, other.seat)));
+      ranges.push(narrowRange(this.hand, other.seat));
     }
 
     const aggressorSeat = lastAggressorSeat(this.hand, this.humanSeat);

@@ -9,10 +9,9 @@
  */
 
 import { equityVsRanges } from "../engine/equity.js";
-import { topPercentRange } from "../engine/strength.js";
-import { rangeTierFor } from "../engine/archetypes.js";
 import { createRng } from "../engine/rng.js";
 import { readHolding } from "./handread.js";
+import { narrowRange } from "./rangenarrow.js";
 
 /** Jak často daný archetyp foldne na sázku — hrubý odhad pro fold equity. */
 const FOLD_TO_BET = {
@@ -66,7 +65,7 @@ export function advise(game, { iterations = 600 } = {}) {
   const ranges = [];
   for (const other of hand.seats) {
     if (other.seat === seat || other.folded || other.hole.length === 0) continue;
-    ranges.push(topPercentRange(rangeTierFor(hand, other.seat)));
+    ranges.push(narrowRange(hand, other.seat));
   }
 
   const rng = createRng(20241031);
